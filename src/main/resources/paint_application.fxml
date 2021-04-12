@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import munitz.paint.PaintCanvas?>
+<?import javafx.scene.text.Text?>
+
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="munitz.paint.PaintController"
+          prefHeight="500.0" prefWidth="500.0">
+
+    <ColorPicker fx:id="colorPicker"
+                 GridPane.columnIndex="1"
+                 GridPane.rowIndex="0"
+                 GridPane.columnSpan="2"/>
+
+    <ToggleButton fx:id ="erase" text="Erase"
+                  GridPane.columnIndex='3'
+                  GridPane.rowIndex="0"
+                  GridPane.columnSpan="2"/>
+
+    <Text text="Brush Size"
+          GridPane.columnIndex="5"
+          GridPane.rowIndex="0"
+          GridPane.columnSpan="2"/>
+
+    <TextField fx:id="brushSize" text="10"
+               GridPane.columnIndex="7"
+               GridPane.rowIndex="0"
+               GridPane.columnSpan="2"
+               onKeyTyped="#onBrushSizeChanged"/>
+
+    <PaintCanvas fx:id = "paintCanvas"
+                 onMouseDragged="#onMouseDragged"
+                 width = "1500"
+                 height="1000"
+                 GridPane.rowIndex="2"
+                 GridPane.columnSpan="20"/>
+
+</GridPane>
