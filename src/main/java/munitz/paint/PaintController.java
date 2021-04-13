@@ -11,38 +11,30 @@ public class PaintController {
     ColorPicker colorPicker;
     @FXML
     ToggleButton erase;
-    @FXML
-    TextField brushSize;
 
-    //private boolean erase = false;
-    private int size = 10;
-   // private boolean erase;
-    //int size;
-
-    //Attempt Dependency Injection
-   // public PaintController(int size){
-      //  this.erase = false;
-      //  this.size= 10;
-        //}
-
-    public void onMouseDragged(MouseEvent mouseDragged){
-        if(!erase.isSelected()){
-            paintCanvas.paint(mouseDragged,colorPicker,size);
-        }
-        else{
-            paintCanvas.erase(mouseDragged,size);
-        }
+/*
+     public void initialize(){
+        //erase.setSelected(false);
+        colorPicker.setValue(Color.BLACK);
     }
 
-    public void onBrushSizeChanged(MouseEvent event){
-        try{
-            size = Integer.parseInt(brushSize.getText());
-        }
-        catch (Exception e){
-            size=10;
+ */
 
+    /**
+     * when user drags mouse
+     * if erase selected, paintCanvas erase method called
+     * if not, paintCanvas paint method called
+     * @param mouseDragged MouseEvent
+     */
+    public void onMouseDragged(MouseEvent mouseDragged) {
+        if (!erase.isSelected()) {
+            paintCanvas.paint(mouseDragged, colorPicker);
+        } else {
+            paintCanvas.erase(mouseDragged);
         }
-
     }
 }
+
+
+
 

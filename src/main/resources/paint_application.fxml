@@ -2,9 +2,8 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import munitz.paint.PaintCanvas?>
 <?import javafx.scene.text.Text?>
-
+<?import munitz.paint.PaintCanvas?>
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           fx:controller="munitz.paint.PaintController"
@@ -20,22 +19,13 @@
                   GridPane.rowIndex="0"
                   GridPane.columnSpan="2"/>
 
-    <Text text="Brush Size"
-          GridPane.columnIndex="5"
-          GridPane.rowIndex="0"
-          GridPane.columnSpan="2"/>
 
-    <TextField fx:id="brushSize" text="10"
-               GridPane.columnIndex="7"
-               GridPane.rowIndex="0"
-               GridPane.columnSpan="2"
-               onKeyTyped="#onBrushSizeChanged"/>
 
     <PaintCanvas fx:id = "paintCanvas"
-                 onMouseDragged="#onMouseDragged"
-                 width = "1500"
-                 height="1000"
-                 GridPane.rowIndex="2"
-                 GridPane.columnSpan="20"/>
+            onMouseDragged="#onMouseDragged"
+            width = "1500"
+            height="1000"
+            GridPane.rowIndex="2"
+            GridPane.columnSpan="20"/>
 
 </GridPane>

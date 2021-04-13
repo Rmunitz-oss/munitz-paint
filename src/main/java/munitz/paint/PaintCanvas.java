@@ -5,12 +5,20 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.input.MouseEvent;
 
-
 public class PaintCanvas extends Canvas {
     double x;
     double y;
+    int size = 10;
     GraphicsContext graphicsContext;
-    public void paint (MouseEvent mouseDragged, ColorPicker colorPicker, int size) {
+
+    /**
+     * paints canvas according to mouse dragged
+     * and color picked by user
+     *
+     * @param mouseDragged MouseEvent
+     * @param colorPicker ColorPicker
+     */
+    public void paint (MouseEvent mouseDragged, ColorPicker colorPicker) {
         graphicsContext = getGraphicsContext2D();
         x = mouseDragged.getX();
         y = mouseDragged.getY();
@@ -19,11 +27,15 @@ public class PaintCanvas extends Canvas {
 
     }
 
-    public void erase(MouseEvent mouseDragged,int size) {
+    /**
+     * erases cnavas according to mouse dragged
+     * @param mouseDragged
+     */
+    public void erase(MouseEvent mouseDragged) {
         x = mouseDragged.getX();
         y = mouseDragged.getY();
         try {
-            graphicsContext.clearRect(x,y,size,size);
+            graphicsContext.clearRect(x,y,size+3,size+3);
         }
         catch (NullPointerException e){
 
