@@ -10,7 +10,6 @@ import static org.mockito.Mockito.*;
 
 public class PaintControllerTest {
     private PaintCanvas paintCanvas;
-    private GraphicsContext graphicsContext;
     private PaintController controller;
     private ColorPicker colorPicker;
     private MouseEvent mouseEvent;
