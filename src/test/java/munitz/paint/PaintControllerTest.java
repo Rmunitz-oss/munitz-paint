@@ -1,91 +1,56 @@
 package munitz.paint;
 
-import javafx.scene.control.Button;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ColorPicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseEvent;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.mockito.Mockito.*;
 
 public class PaintControllerTest {
-    boolean erase;
-    int size = 10;
+    private PaintCanvas paintCanvas;
+    private GraphicsContext graphicsContext;
+    private PaintController controller;
+    private ColorPicker colorPicker;
+    private MouseEvent mouseEvent;
+    private ToggleButton erase;
+
     @BeforeClass
     public static void beforeClass() {
+
         com.sun.javafx.application.PlatformImpl.startup(()->{});
     }
-    /**
     @Test
-    public void onMouseDragged (){
+    public void onMouseDraggedDraw(){
         //given
-
-        //boolean erase = mock(boolean.class);
-        //int size = mock(int.class);
-        int size = 10;
-        boolean erase = false;
-        //MouseEvent event = mock(MouseEvent.class);
-
-        PaintController controller = new PaintController(erase,size);
-
-        controller.paintCanvas = mock(PaintCanvas.class);
-
-        //controller.colorPicker=mock(ColorPicker.class);
-        doReturn("White").when(controller.colorPicker).getValue();
-
-        controller.paint=mock(Button.class);
-
-        controller.eraser= mock(Button.class);
-
-        controller.brushSize= mock(TextField.class);
-        doReturn("10").when(controller.brushSize).getText();
-
+        givenPaintController();
 
         //when
-        controller.onMouseDragged(mock(MouseEvent.class));
-
-        //verify
-        verify(controller.paintCanvas).paint(any(MouseEvent.class,ColorPicker.class,size));
-
-
-    }
-     */
-    @Test
-    public void onMouseDragged(){
-        //given
-        PaintController controller = new PaintController(size);
-        controller.paintCanvas = mock(PaintCanvas.class);
-        controller.brushSize = mock(TextField.class);
-        doReturn("10").when(controller.brushSize).getText();
-        MouseEvent event = mock(MouseEvent.class);
-        ColorPicker color = mock(ColorPicker.class);
-        int size = Integer.parseInt(controller.brushSize.getText());
-
-        //when
-        controller.onMouseDragged(null);
+        controller.onMouseDragged(mouseEvent);
+        doReturn(false).when(erase.isSelected());
 
         //then
-        verify(controller.paintCanvas).paint(any(MouseEvent.class));
-
-
+        verify(paintCanvas).paint(mouseEvent,colorPicker);
 
     }
     @Test
-    public void onBrushSizeChanged(){
-
+    public void onMouseDraggedErase(){
         //given
-        PaintController controller = new PaintController(size);
-        controller.paintCanvas = mock(PaintCanvas.class);
-        controller.brushSize = mock(TextField.class);
-        //controller.size = mock(Integer.class);
-        doReturn("20").when(controller.brushSize).getText();
-
-
-
+        givenPaintController();
         //when
-        controller.onBrushSizeChanged((mock(MouseEvent.class)));
-
+        controller.onMouseDragged(mouseEvent);
+        doReturn(true).when(erase.isSelected());
         //then
-        verify(controller.size
+        verify(paintCanvas).paint(mouseEvent,colorPicker);
     }
+private void givenPaintController(){
+        controller = new PaintController();
+        paintCanvas = mock(PaintCanvas.class);
+        colorPicker = mock(ColorPicker.class);
+        graphicsContext = mock(GraphicsContext.class);
+        mouseEvent = mock(MouseEvent.class);
+        erase = mock(ToggleButton.class);
+}
+
 }
