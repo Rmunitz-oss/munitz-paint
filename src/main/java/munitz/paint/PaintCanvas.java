@@ -6,10 +6,10 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.input.MouseEvent;
 
 public class PaintCanvas extends Canvas {
-    double x;
-    double y;
-    int size = 10;
-    GraphicsContext graphicsContext;
+    private double x;
+    private double y;
+    private int size = 10;
+    private GraphicsContext graphicsContext;
 
     /**
      * paints canvas according to mouse dragged
@@ -38,7 +38,7 @@ public class PaintCanvas extends Canvas {
             graphicsContext.clearRect(x,y,size+3,size+3);
         }
         catch (NullPointerException e){
-
+            //Do nothing if user attempts to erase blank canvas
         }
 
     }

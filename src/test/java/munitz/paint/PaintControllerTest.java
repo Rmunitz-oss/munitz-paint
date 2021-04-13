@@ -22,7 +22,7 @@ public class PaintControllerTest {
     }
 
     @Test
-    public void onMouseDraggedDraw(){
+    public void onMouseDraggedPaint(){
         //given
         givenPaintController();
         erase.setSelected(false);
@@ -52,7 +52,7 @@ public class PaintControllerTest {
     private void givenPaintController(){
         controller = new PaintController();
         paintCanvas = mock(PaintCanvas.class);
-        controller.paintCanvas =paintCanvas;
+        controller.paintCanvas = paintCanvas;
         colorPicker = mock(ColorPicker.class);
         controller.colorPicker = colorPicker;
         mouseEvent = mock(MouseEvent.class);
