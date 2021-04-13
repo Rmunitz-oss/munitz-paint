@@ -12,14 +12,6 @@ public class PaintController {
     @FXML
     ToggleButton erase;
 
-/*
-     public void initialize(){
-        //erase.setSelected(false);
-        colorPicker.setValue(Color.BLACK);
-    }
-
- */
-
     /**
      * when user drags mouse
      * if erase selected, paintCanvas erase method called

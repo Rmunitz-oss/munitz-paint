@@ -25,10 +25,11 @@ public class PaintControllerTest {
     public void onMouseDraggedDraw(){
         //given
         givenPaintController();
+        erase.setSelected(false);
+        doReturn(false).when(erase).isSelected();
 
         //when
         controller.onMouseDragged(mouseEvent);
-        doReturn(false).when(erase.isSelected());
 
         //then
         verify(paintCanvas).paint(mouseEvent,colorPicker);
@@ -38,20 +39,25 @@ public class PaintControllerTest {
     public void onMouseDraggedErase(){
         //given
         givenPaintController();
+        erase.setSelected(true);
+        doReturn(true).when(erase).isSelected();
+
         //when
         controller.onMouseDragged(mouseEvent);
-        doReturn(true).when(erase.isSelected());
+
         //then
-        verify(paintCanvas).paint(mouseEvent,colorPicker);
+        verify(paintCanvas).erase(mouseEvent);
     }
 
     private void givenPaintController(){
         controller = new PaintController();
         paintCanvas = mock(PaintCanvas.class);
+        controller.paintCanvas =paintCanvas;
         colorPicker = mock(ColorPicker.class);
-        graphicsContext = mock(GraphicsContext.class);
+        controller.colorPicker = colorPicker;
         mouseEvent = mock(MouseEvent.class);
         erase = mock(ToggleButton.class);
+        controller.erase = erase;
     }
 
 }
