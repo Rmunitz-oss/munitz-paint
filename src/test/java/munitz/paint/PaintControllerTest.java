@@ -18,9 +18,9 @@ public class PaintControllerTest {
 
     @BeforeClass
     public static void beforeClass() {
-
         com.sun.javafx.application.PlatformImpl.startup(()->{});
     }
+
     @Test
     public void onMouseDraggedDraw(){
         //given
@@ -44,13 +44,14 @@ public class PaintControllerTest {
         //then
         verify(paintCanvas).paint(mouseEvent,colorPicker);
     }
-private void givenPaintController(){
+
+    private void givenPaintController(){
         controller = new PaintController();
         paintCanvas = mock(PaintCanvas.class);
         colorPicker = mock(ColorPicker.class);
         graphicsContext = mock(GraphicsContext.class);
         mouseEvent = mock(MouseEvent.class);
         erase = mock(ToggleButton.class);
-}
+    }
 
 }
